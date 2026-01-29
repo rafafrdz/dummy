@@ -9,6 +9,15 @@ fi
 
 echo "[*] NVIDIA GPU detected"
 
+# 2. Kill the conflicts
+echo "[*] Removing conflicting open-driver packages..."
+sudo pacman -Rdd --noconfirm \
+  libxnvctrl \
+  linux-cachyos-nvidia-open \
+  linux-cachyos-lts-nvidia-open \
+  nvidia-open-dkms \
+  2>/dev/null || true
+
 echo "[*] Removing nvidia-open profile (if installed)..."
 sudo chwd -r nvidia-open-dkms || true
 
